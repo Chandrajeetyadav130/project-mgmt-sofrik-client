@@ -12,6 +12,7 @@ export default function Login() {
   const submit = async e => {
     e.preventDefault();
     await dispatch(login(email, password));
+    alert("Login successful")
     navigate('/');
   };
 

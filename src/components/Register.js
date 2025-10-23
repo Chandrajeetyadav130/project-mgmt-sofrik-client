@@ -10,7 +10,10 @@ export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const submit = async e => { e.preventDefault(); await dispatch(register(name, email, password)); navigate('/'); };
+  const submit = async e => { e.preventDefault(); 
+    await dispatch(register(name, email, password)); 
+    alert("registration successful")
+    navigate('/'); };
 
   return (
     <div className="reg-logincontainer">
