@@ -8,6 +8,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({})
+  const [loading,setLoading]=useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // validation error logic
@@ -34,12 +35,16 @@ export default function Register() {
     setError(validationError)
     if (Object.keys(validationError).length === 0) {
       try {
+        setLoading(true)
         await dispatch(register(name, email, password));
         alert("registration successful")
         navigate('/')
 
       } catch (error) {
         console.log(error)
+      }
+      finally{
+           setLoading(false)
       }
     }
 
@@ -58,7 +63,7 @@ export default function Register() {
         <input className='login_reg_input' value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" />
         {error.password && <p style={{ color: 'red' }}>{error.password}</p>}
 
-        <button className='login-reg-btn' type="submit">Register</button>
+        <button className='login-reg-btn' type="submit">{loading?"Register...":"Register"}</button>
       </form>
     </div>
   );
